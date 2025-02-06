@@ -7,7 +7,7 @@ namespace Employee.Register.Domain.Interfaces
         Task<IEnumerable<EmployeeEntity>> Get();
         Task Create(EmployeeEntity employee);
         Task Update(EmployeeEntity employee);
-        Task<EmployeeEntity> GetById(int id);
-        Task Delete(int id);
+        Task<EmployeeEntity?> GetById(int id);
+        Task Delete(EmployeeEntity employee);
     }
 }

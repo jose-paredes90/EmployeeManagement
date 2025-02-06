@@ -1,8 +1,10 @@
 ﻿using Employee.Register.Domain.Interfaces;
+using MediatR;
+using static Employee.Register.Middleware.Exceptions.BasicExceptions;
 
 namespace Employee.Register.Application.Commands.Handlers
 {
-    public class DeleteEmployeeCommandhandler
+    public class DeleteEmployeeCommandhandler : IRequestHandler<DeleteEmployeeCommand>
     {
         private readonly IEmployeeRepository _empleadoRepository;
 
@@ -13,13 +15,11 @@ namespace Employee.Register.Application.Commands.Handlers
 
         public async Task Handle(DeleteEmployeeCommand command, CancellationToken cancellationToken)
         {
-            var employeeExists = await _empleadoRepository.GetById(command.Id);
-            if (employeeExists == null)
-            {
-                throw new Exception("Empleado no encontrado");
-            }
+            var employee = await _empleadoRepository.GetById(command.Id);
+            if (employee == null)
+                throw new NotFoundException("Empleado no encontrado");
 
-            await _empleadoRepository.Delete(command.Id);
+            await _empleadoRepository.Delete(employee);
         }
     }
 }

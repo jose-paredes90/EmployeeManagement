@@ -1,10 +1,11 @@
 ﻿using Employee.Register.Application.DTO;
 using Employee.Register.Domain.Entities;
 using Employee.Register.Domain.Interfaces;
+using MediatR;
 
 namespace Employee.Register.Application.Commands.Handlers
 {
-    public class CreateEmployeeCommandHandler
+    public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, EmployeeEntity>
     {
         private readonly IEmployeeRepository _empleadoRepository;
 

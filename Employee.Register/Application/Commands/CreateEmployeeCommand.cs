@@ -1,6 +1,9 @@
-﻿namespace Employee.Register.Application.Commands
+﻿using Employee.Register.Domain.Entities;
+using MediatR;
+
+namespace Employee.Register.Application.Commands
 {
-    public class CreateEmployeeCommand
+    public class CreateEmployeeCommand : IRequest<EmployeeEntity>
     {
         public string Name { get; set; }
         public string Lastname { get; set; }

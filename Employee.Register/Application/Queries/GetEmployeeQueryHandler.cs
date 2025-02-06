@@ -1,10 +1,10 @@
 ﻿using Employee.Register.Application.DTO;
-using Employee.Register.Domain.Interfaces;
+using MediatR;
 
 namespace Employee.Register.Application.Queries
 {
-    public class GetEmployeeQuery
+    public class GetEmployeeQuery : IRequest<IEnumerable<EmployeeDto>>
     {
-      
+
     }
 }

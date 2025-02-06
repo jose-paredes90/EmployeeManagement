@@ -1,6 +1,8 @@
-﻿namespace Employee.Register.Application.Commands
+﻿using MediatR;
+
+namespace Employee.Register.Application.Commands
 {
-    public class DeleteEmployeeCommand
+    public class DeleteEmployeeCommand : IRequest
     {
         public int Id { get; set; }
     }

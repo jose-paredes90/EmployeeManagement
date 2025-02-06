@@ -12,7 +12,7 @@ namespace Employee.Register.Application.Queries.Handlers
             _chargeRepository = chargeRepository;
         }
 
-        public async Task<IEnumerable<ChargeDto>> Handle(GetChargeQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<ChargeDto>> Handle( CancellationToken cancellationToken)
         {
             var permissionType = await _chargeRepository.Get();
             return permissionType?.Select(item => new ChargeDto

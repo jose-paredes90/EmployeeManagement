@@ -1,9 +1,10 @@
 ﻿using Employee.Register.Application.DTO;
 using Employee.Register.Domain.Interfaces;
+using MediatR;
 
 namespace Employee.Register.Application.Queries.Handlers
 {
-    public class GetEmployeeQueryHandler 
+    public class GetEmployeeQueryHandler : IRequestHandler<GetEmployeeQuery, IEnumerable<EmployeeDto>>
     {
         private readonly IEmployeeRepository _empleadoRepository;
 
@@ -28,6 +29,7 @@ namespace Employee.Register.Application.Queries.Handlers
                 Hiredate = e.Hiredate,
                 Lastname = e.Lastname,
                 Salary = e.Salary,
+                Birthdate = e.Birthdate,
             });
         }
     }

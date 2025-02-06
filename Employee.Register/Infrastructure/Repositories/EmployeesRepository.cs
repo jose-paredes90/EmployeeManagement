@@ -27,7 +27,7 @@ namespace Employee.Register.Infrastructure.Repositories
         {
             await _context.Employee.AddAsync(empleado);
             await _context.SaveChangesAsync();
-        } 
+        }
 
         public async Task Update(EmployeeEntity empleado)
         {
@@ -35,25 +35,17 @@ namespace Employee.Register.Infrastructure.Repositories
             _context.Employee.Update(empleado);
             await _context.SaveChangesAsync();
         }
-                        
-        public async Task Delete(int id)
+
+        public async Task Delete(EmployeeEntity employee)
         {
-            var employee = await _context.Employee.FindAsync(id);
-            if (employee != null)
-            {
-                _context.Employee.Remove(employee);
-                await _context.SaveChangesAsync();
-            }
-            else
-            {
-                throw new Exception("Empleado no encontrado");
-            }
+            _context.Employee.Remove(employee);
+            await _context.SaveChangesAsync();
         }
 
-        public async Task<EmployeeEntity> GetById(int id)
+        public async Task<EmployeeEntity?> GetById(int id)
         {
             return await _context.Employee
-                .Include (e => e.Charge)
+                .Include(e => e.Charge)
                 .FirstOrDefaultAsync(e => e.Id == id);
         }
     }
